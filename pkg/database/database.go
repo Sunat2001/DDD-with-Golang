@@ -1,6 +1,7 @@
 package database
 
 import (
+	"CRUD/pkg/domain/users/Entities"
 	"github.com/kelseyhightower/envconfig"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
@@ -27,6 +28,8 @@ func InitDB() {
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	Connector.Migrator().AutoMigrate(&Entities.User{})
 
 	log.Println("Successfully connected to Database!!")
 }

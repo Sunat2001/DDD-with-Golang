@@ -1,31 +1,13 @@
-package controllers
+package Controllers
 
 import (
-	"CRUD/pkg/domain/users/entities"
-	UserRepository "CRUD/pkg/domain/users/repositories"
+	UserRepository "CRUD/pkg/domain/users/Repositories"
 	"encoding/json"
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
 )
-
-func Create(w http.ResponseWriter, r *http.Request) {
-	var user entities.User
-
-	err := json.NewDecoder(r.Body).Decode(&user)
-	if err != nil {
-		log.Fatal(err)
-	}
-	UserRepository.Create(user)
-
-	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(http.StatusCreated)
-	err = json.NewEncoder(w).Encode(user)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
 
 func GetAll(w http.ResponseWriter, r *http.Request) {
 	users := UserRepository.FetchAll()

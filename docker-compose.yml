@@ -1,0 +1,19 @@
+version: '3'
+services:
+  db:
+    container_name: postgresDB
+    image: postgres:latest
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=]k85kx+8gi^_LM;
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+  app:
+    container_name:
+volumes:
+  db:
+    driver: local

@@ -47,7 +47,12 @@ func initServer(r *mux.Router, cfg *config.Config) {
 	go func() {
 		log.Println("Server started on port " + cfg.HttpAddr)
 		if err := srv.ListenAndServe(); err != nil {
-			log.Fatal(err)
+			srv.Addr = "127.0.0.1:8001"
+			log.Println("Server started on port 8001")
+			err := srv.ListenAndServe()
+			if err != nil {
+				log.Fatal(err.Error())
+			}
 		}
 	}()
 
